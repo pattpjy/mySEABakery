@@ -5,9 +5,10 @@
 class todoList{
     constructor(name){
         this.name = name
-        this.list = [] // or object
+        this.list = [] // A list of ordered strings is a good case for an array
     }
 }
+
 class bakeBoard{
     constructor(){
         bakeList = new todoList('Morning Bake')
@@ -25,3 +26,5 @@ class bakeBoard{
     }
 
 }
+
+console.log('Hello')
