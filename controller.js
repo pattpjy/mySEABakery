@@ -1,26 +1,39 @@
+console.log('Lala')
+
 // variables
-var inputText = document.querySelector('#bakingInput')
-var addBtn = document.querySelector('#addBtn')
+let div1 = document.querySelector('#div1')
+let inputText = document.querySelector('#bakingInput')
+var addBtn = document.querySelector('#addButton')
 var displayList = document.querySelector('#bakeList')
 
-//event listener and function goes here
-//window.onload - create new bakeboard but also store it somewhere
-addBtn.addEventListener('click', addList)
+//event listener 
+window.addEventListener('load', newBoard);
+addBtn.addEventListener('click', function(){
+    addList()
+    showList()
+})
 
 
-function addList(){
-    inputText.value 
-    addInput()
+//function 
+let morningBoard = ''
+
+function newBoard(event){
+    morningBoard = new bakeBoard('Morning')
+
+
+}
+function addList(event){
+    morningBoard.addInput(inputText.value )
+
 }
 
-function showList(){
-    bakeList.forEach((item)=>{
+function showList(event){
+    morningBoard.bakeList.list.forEach((item)=>{
         let li = document.createElement("li");
         li.innerText = item;
         displayList.appendChild(li);
       })
 }
-addList()
 
 
-console.log('hello')
+

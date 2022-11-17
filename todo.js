@@ -2,16 +2,17 @@
 //need function that add input to the list
 // need function that remove input from the list
 
-class todoList{
+class todoList {
     constructor(name){
         this.name = name
         this.list = [] // A list of ordered strings is a good case for an array
     }
 }
 
-class bakeBoard{
-    constructor(){
-        bakeList = new todoList('Morning Bake')
+class bakeBoard {
+    constructor(name){
+        this.name = name
+        this.bakeList = new todoList('Morning Bake')
         //keep track of data goin to the list
         //adding data to the list
         //remove data from the list
@@ -19,12 +20,11 @@ class bakeBoard{
         //way to make in progress
     }
     addInput(text){
-        bakelist.push(text)
+        this.bakeList.list.push(text)
     }
     removeInput(textIndex){
-        bakelist.splice(textIndex,1)
+        this.bakeList.list.splice(textIndex,1)
     }
 
 }
 
-console.log('Hello')
