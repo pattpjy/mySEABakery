@@ -1,39 +1,88 @@
-console.log('Lala')
 
 // variables
 let div1 = document.querySelector('#div1')
 let inputText = document.querySelector('#bakingInput')
 var addBtn = document.querySelector('#addButton')
-var displayList = document.querySelector('#bakeList')
+const displayList = document.querySelector('#bakeUnlist')
+let nodeLi = document.querySelector('li')
+let morningBoard = ''
+const favBtn = document.querySelector('#favBtn')
+// let xBtn = document.querySelector('#bakeUnlist')
 
 //event listener 
 window.addEventListener('load', newBoard);
+
+favBtn.addEventListener('click', showFav)
 addBtn.addEventListener('click', function(){
-    addList()
+    createItem()
     showList()
+    clearInput()
 })
+displayList.addEventListener('click',xList)
+displayList.addEventListener('click',checkedList)
 
 
 //function 
-let morningBoard = ''
 
 function newBoard(event){
-    morningBoard = new bakeBoard('Morning')
-
-
+    morningBoard = new TodoBoard('Morning')
+    boardFavList = new FavList()
 }
-function addList(event){
-    morningBoard.addInput(inputText.value )
 
+function createItem(event){
+    addListObj = new ItemList(inputText.value)
+    morningBoard.addInput(addListObj)
+    boardFavList.addToLS(addListObj)
 }
 
 function showList(event){
-    morningBoard.bakeList.list.forEach((item)=>{
-        let li = document.createElement("li");
-        li.innerText = item;
-        displayList.appendChild(li);
-      })
+    let li = document.createElement('li');
+    li.innerText = inputText.value;
+    li.className = addListObj.id
+    displayList.appendChild(li);
+    let xBtn = document.createElement("SPAN");
+    var txt = document.createTextNode("REMOVE");
+    xBtn.className = 'close';
+    xBtn.id = addListObj.id
+    xBtn.appendChild(txt);
+    li.appendChild(xBtn)
 }
+
+function clearInput(event){
+    inputText.value = ''
+}
+
+function xList(event){
+    if(event.target.classList.contains('close')){
+        let clickXid = event.target.id
+        let foundIndex = morningBoard.todoList.findIndex(x=> x.id.toString()===clickXid)
+        let liRemove = document.getElementsByClassName(clickXid)
+        morningBoard.removeInput(foundIndex)
+        liRemove[0].remove()
+    }
+}
+
+function checkedList(event){
+    if(event.target.tagName === 'LI'){
+        event.target.classList.toggle('checked')
+    }
+}
+
+function showFav(event){
+    let showFavItems = localStorage.getItem('items');
+    let li = document.createElement('li');
+    li.innerText = showFavItems[0].id;
+    displayList.appendChild(li);
+}
+
+
+
+
+
+
+
+
+
 
 
 

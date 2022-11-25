@@ -2,29 +2,45 @@
 //need function that add input to the list
 // need function that remove input from the list
 
-class todoList {
-    constructor(name){
-        this.name = name
-        this.list = [] // A list of ordered strings is a good case for an array
+class ItemList {
+    constructor(textInput){
+        this.id = Date.now()
+        this.text = textInput
     }
 }
 
-class bakeBoard {
+//class is handling save and access local storage list object
+//I can connect with local storage here
+
+
+class FavList {
+    constructor() {
+        this.listFav = []
+    }
+    //passing obj that's key pair id and name
+    add(obj) {
+        this.listFav.push(obj)
+        window.localStorage.setItem('items', this.listFav)
+    }
+    remove(id){
+
+    }
+}
+
+class TodoBoard {
     constructor(name){
         this.name = name
-        this.bakeList = new todoList('Morning Bake')
-        //keep track of data goin to the list
-        //adding data to the list
+        this.todoList = []
+        }
+    addInput(listObj){
+        this.todoList.push(listObj)
         //remove data from the list
         //starred the difficult input
         //way to make in progress
     }
-    addInput(text){
-        this.bakeList.list.push(text)
+    removeInput(id){
+        var removeIndex = this.todoList.indexOf(id)
+        this.todoList.splice(removeIndex,1)
     }
-    removeInput(textIndex){
-        this.bakeList.list.splice(textIndex,1)
-    }
-
 }
 

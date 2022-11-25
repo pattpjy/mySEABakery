@@ -5,22 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>SE Asia Baker</title>
-        <link rel="stylesheet" href="./style.css">
-        <link rel="icon" href="./favicon.ico" type="image/x-icon">
+        <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Dosis">
+        <link rel="stylesheet" href="./style.css" >
+        
     </head>
     <body>
         <main>
-            <h1>Welcome to My SE Asian Bakery</h1>
+            <h1>Welcome to My SE Asia Bakery</h1>
             <div id="div1" class="header">
                 <h2>Baking To Do List</h2>
-                <input type="Text" id="bakingInput" placeholder="Bake this...">
+                <input type="Text" id="bakingInput" placeholder="Bake this..." onfocus="clearInput()">
                 <span class="addBtn" id="addButton">BAKE ME</span>
+                <span class="favorite" id="favBtn">SHOW FAV!</span>
             </div>
-            <ul id="bakeList">
-                <li>Sourdough</li>
-                <li>Shokupan</li>
-                <li>Blueberry Muffin</li>
-                <li>Chocolate Muffin</li>
+            <ul id="bakeUnlist">
             </ul>
         </main>
         <script src="controller.js"></script>
