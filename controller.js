@@ -3,39 +3,45 @@
 let div1 = document.querySelector('#div1')
 let inputText = document.querySelector('#bakingInput')
 var addBtn = document.querySelector('#addButton')
-var displayList = document.querySelector('#bakeUnlist')
-let nodeLi = document.querySelectorAll('li')
+const displayList = document.querySelector('#bakeUnlist')
+let nodeLi = document.querySelector('li')
 let morningBoard = ''
-let xBtn = document.querySelector('#bakeUnlist')
+const favBtn = document.querySelector('#favBtn')
+// let xBtn = document.querySelector('#bakeUnlist')
 
 //event listener 
 window.addEventListener('load', newBoard);
+
+favBtn.addEventListener('click', showFav)
 addBtn.addEventListener('click', function(){
     createItem()
     showList()
     clearInput()
 })
+displayList.addEventListener('click',xList)
+displayList.addEventListener('click',checkedList)
 
-xBtn.addEventListener('click',xList)
-// need to check how to do xbtn 
 
 //function 
+
 function newBoard(event){
-    morningBoard = new todoBoard('Morning')
+    morningBoard = new TodoBoard('Morning')
+    boardFavList = new FavList()
 }
 
 function createItem(event){
-    addListObj = new itemList(inputText.value)
+    addListObj = new ItemList(inputText.value)
     morningBoard.addInput(addListObj)
+    boardFavList.addToLS(addListObj)
 }
 
 function showList(event){
     let li = document.createElement('li');
     li.innerText = inputText.value;
-    li.id = addListObj.id
+    li.className = addListObj.id
     displayList.appendChild(li);
     let xBtn = document.createElement("SPAN");
-    var txt = document.createTextNode("remove");
+    var txt = document.createTextNode("REMOVE");
     xBtn.className = 'close';
     xBtn.id = addListObj.id
     xBtn.appendChild(txt);
@@ -47,20 +53,28 @@ function clearInput(event){
 }
 
 function xList(event){
-    //Please explain event.target.classList
-if(event.target.classList.contains('close')){
-    var clickXid = event.target.id
-    
-    var foundIndex = morningBoard.todoList.findIndex(x=> x.id.toString()===clickXid)
-    morningBoard.removeInput(foundIndex)
-    var li = document.querySelector(`${clickXid}`)
+    if(event.target.classList.contains('close')){
+        let clickXid = event.target.id
+        let foundIndex = morningBoard.todoList.findIndex(x=> x.id.toString()===clickXid)
+        let liRemove = document.getElementsByClassName(clickXid)
+        morningBoard.removeInput(foundIndex)
+        liRemove[0].remove()
     }
 }
 
-// var foundId = savedPosters.findIndex(function (savedPoster) { 
-//     return clickImageId === `${savedPoster.id}`
-//   })
-//morningBoard.todoList[0].id
+function checkedList(event){
+    if(event.target.tagName === 'LI'){
+        event.target.classList.toggle('checked')
+    }
+}
+
+function showFav(event){
+    let showFavItems = localStorage.getItem('items');
+    let li = document.createElement('li');
+    li.innerText = showFavItems[0].id;
+    displayList.appendChild(li);
+}
+
 
 
 
