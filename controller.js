@@ -32,7 +32,7 @@ function newBoard(event){
 function createItem(event){
     addListObj = new ItemList(inputText.value)
     morningBoard.addInput(addListObj)
-    boardFavList.addToLS(addListObj)
+    boardFavList.add(addListObj)
 }
 
 function showList(event){
@@ -69,10 +69,12 @@ function checkedList(event){
 }
 
 function showFav(event){
-    let showFavItems = localStorage.getItem('items');
-    let li = document.createElement('li');
-    li.innerText = showFavItems[0].id;
-    displayList.appendChild(li);
+    for (let i = 1; i<boardFavList['listFav'].length; i++ ){
+        let li = document.createElement('li');
+        li.innerText = boardFavList['listFav'][i].text
+        displayList.appendChild(li);
+    }
+    
 }
 
 
