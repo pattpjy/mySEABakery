@@ -69,7 +69,7 @@ function checkedList(event){
 }
 
 function showFav(event){
-    for (let i = 0; i<boardFavList['listFav'].length; i++ ){
+    for (let i = 1; i<boardFavList['listFav'].length; i++ ){
         let li = document.createElement('li');
         li.innerText = boardFavList['listFav'][i].text
         displayList.appendChild(li);
