@@ -16,11 +16,16 @@ class ItemList {
 class FavList {
     constructor() {
         this.listFav = []
+        this.read()
     }
     //passing obj that's key pair id and name
     add(obj) {
         this.listFav.push(obj)
         window.localStorage.setItem('items', this.listFav)
+    }
+    read() {
+        let reading = window.localStorage.getItem('items')
+        this.listFav.push(reading)
     }
     remove(id){
 
